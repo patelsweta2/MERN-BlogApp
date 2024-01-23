@@ -1,2 +1,2 @@
 # MERN-BlogApp
-MERN
+MERN with Tailwind CSS
