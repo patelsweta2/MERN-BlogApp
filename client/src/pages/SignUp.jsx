@@ -48,6 +48,8 @@ function SignUp() {
           <motion.div
             whileInView={{ y: [-100, 0], opacity: [0, 1] }}
             transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
             <Link to="/" className="font-bold dark:text-white text-4xl">
               <span className="px-2 py-1 bg-gradient-to-r from-yellow-500 via-red-500 to-yellow-500 rounded-lg text-white">
@@ -56,7 +58,7 @@ function SignUp() {
               Blog
             </Link>
           </motion.div>
-          <p className="text-sm mt-5">
+          <p className="text-sm mt-5 italic font-semibold text-slate-600">
             Embark on a journey of words. Join our blogging community and let
             your thoughts take flight
           </p>
