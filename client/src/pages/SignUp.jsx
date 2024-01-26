@@ -64,55 +64,55 @@ function SignUp() {
           </p>
         </div>
         <div className="flex-1">
-          <motion.div
+          <motion.form
             whileInView={{ y: [-100, 0], opacity: [0, 1] }}
             transition={{ duration: 0.5 }}
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit}
           >
-            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-              <div>
-                <Label value="Your username" />
-                <TextInput
-                  type="text"
-                  placeholder="Username"
-                  id="username"
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <Label value="Your email" />
-                <TextInput
-                  type="text"
-                  placeholder="name@gmail.com"
-                  id="email"
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <Label value="Your password" />
-                <TextInput
-                  type="text"
-                  placeholder="Password"
-                  id="password"
-                  onChange={handleChange}
-                />
-              </div>
+            <div>
+              <Label value="Your username" />
+              <TextInput
+                type="text"
+                placeholder="Username"
+                id="username"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label value="Your email" />
+              <TextInput
+                type="text"
+                placeholder="name@gmail.com"
+                id="email"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label value="Your password" />
+              <TextInput
+                type="text"
+                placeholder="Password"
+                id="password"
+                onChange={handleChange}
+              />
+            </div>
 
-              <Button
-                gradientDuoTone="pinkToOrange"
-                type="submit"
-                disabled={loading}
-              >
-                {loading ? (
-                  <>
-                    <Spinner size="sm" />
-                    <span className="pl-3">Loading...</span>
-                  </>
-                ) : (
-                  "Sign Up"
-                )}
-              </Button>
-            </form>
-          </motion.div>
+            <Button
+              gradientDuoTone="pinkToOrange"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Spinner size="sm" />
+                  <span className="pl-3">Loading...</span>
+                </>
+              ) : (
+                "Sign Up"
+              )}
+            </Button>
+          </motion.form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Have an account?</span>
             <Link to="/sign-in" className="text-blue-500">
