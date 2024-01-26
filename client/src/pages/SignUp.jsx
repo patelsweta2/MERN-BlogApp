@@ -91,7 +91,7 @@ function SignUp() {
             <div>
               <Label value="Your password" />
               <TextInput
-                type="text"
+                type="password"
                 placeholder="Password"
                 id="password"
                 onChange={handleChange}
