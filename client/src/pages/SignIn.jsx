@@ -8,6 +8,7 @@ import {
   signInSuccess,
   signInFailure,
 } from "../redux/user/userSlice";
+import { Oauth } from "../components";
 
 function SignIn() {
   const [formData, setFormData] = useState({});
@@ -32,10 +33,12 @@ function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      console.log("success");
       if (data.success === false) {
         dispatch(signInFailure(data.message));
       }
       if (res.ok) {
+        console.log("success");
         dispatch(signInSuccess(data));
         navigate("/");
       }
@@ -107,6 +110,7 @@ function SignIn() {
                 "Sign In"
               )}
             </Button>
+            <Oauth />
           </motion.form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Dont have an account?</span>
