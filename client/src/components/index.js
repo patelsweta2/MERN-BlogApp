@@ -8,3 +8,4 @@ export { default as DashSidebar } from "./DashSideBar";
 export { default as DashProfile } from "./DashProfile";
 export { default as StickyHeader } from "./StickyHeader";
 export { default as OnlyAdminPrivateRoute } from "./OnlyAdminPrivateRoute";
+export { default as DashPost } from "./DashPost";
