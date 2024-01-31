@@ -6,3 +6,4 @@ export { default as SignIn } from "./SignIn";
 export { default as SignUp } from "./SignUp";
 export { default as CreatePost } from "./CreatePost";
 export { default as UpdatePost } from "./UpdatePost.jsx";
+export { default as PostPage } from "./PostPage";
