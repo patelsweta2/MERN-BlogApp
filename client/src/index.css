@@ -22,8 +22,15 @@ body {
 }
 
 .post-content h2 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 400;
+  font-family: sans-serif;
+  margin: 1.5rem 0;
+}
+
+.post-content h3 {
+  font-size: 1.4rem;
+  /* font-weight: 400; */
   font-family: sans-serif;
   margin: 1.5rem 0;
 }
@@ -37,6 +44,6 @@ body {
   text-decoration: underline;
 }
 
-.dark .post-content s {
+.dark .post-content a {
   color: red;
 }
