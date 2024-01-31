@@ -1,5 +1,4 @@
 export { default as Header } from "./Header";
-
 export { default as Footer } from "./Footer";
 export { default as Oauth } from "./Oauth";
 export { default as ThemeProvider } from "./ThemeProvider";
@@ -11,3 +10,5 @@ export { default as OnlyAdminPrivateRoute } from "./OnlyAdminPrivateRoute";
 export { default as DashPost } from "./DashPost";
 export { default as DashUsers } from "./DashUsers";
 export { default as CallToAction } from "./CallToAction";
+export { default as CommentSection } from "./CommentSection";
+export { default as ScrollToTop } from "./ScrollToTop";

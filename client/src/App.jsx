@@ -16,10 +16,12 @@ import {
   PrivateRoute,
   StickyHeader,
   OnlyAdminPrivateRoute,
+  ScrollToTop,
 } from "./components";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       {/* <StickyHeader> */}
       <Header />
       {/* </StickyHeader> */}
