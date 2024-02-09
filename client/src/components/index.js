@@ -1,4 +1,5 @@
 export { default as Header } from "./Header";
+
 export { default as Footer } from "./Footer";
 export { default as Oauth } from "./Oauth";
 export { default as ThemeProvider } from "./ThemeProvider";
@@ -14,3 +15,4 @@ export { default as CommentSection } from "./CommentSection";
 export { default as ScrollToTop } from "./ScrollToTop";
 export { default as PostCard } from "./PostCard";
 export { default as DashComments } from "./DashComments";
+export { default as DashBoardComp } from "./DashBoardComp";
