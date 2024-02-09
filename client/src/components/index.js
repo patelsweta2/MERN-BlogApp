@@ -13,3 +13,4 @@ export { default as CallToAction } from "./CallToAction";
 export { default as CommentSection } from "./CommentSection";
 export { default as ScrollToTop } from "./ScrollToTop";
 export { default as PostCard } from "./PostCard";
+export { default as DashComments } from "./DashComments";
