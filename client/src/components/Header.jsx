@@ -14,9 +14,10 @@ const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
   const [searchTerm, setSearchTerm] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(searchTerm);
+
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get("searchTerm");
@@ -49,7 +50,7 @@ const Header = () => {
   };
 
   return (
-    <Navbar className="border-b-4">
+    <Navbar className="border-b-2  flex items-center justify-between">
       <motion.div
         whileInView={{ x: [-100, 0], opacity: [0, 1] }}
         transition={{ duration: 0.5 }}
@@ -58,9 +59,9 @@ const Header = () => {
       >
         <Link
           to="/"
-          className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
+          className="self-center whitespace-nowrap text-lg sm:text-xl font-semibold dark:text-white"
         >
-          <span className="px-2 py-1 bg-gradient-to-r from-yellow-500 via-red-500 to-yellow-500 rounded-lg text-white">
+          <span className="px-2 py-2 bg-gradient-to-r from-yellow-500 via-red-500 to-yellow-500 rounded-xl text-white">
             NamasteNest
           </span>
           Blog
@@ -71,17 +72,17 @@ const Header = () => {
           type="text"
           placeholder="Search..."
           rightIcon={AiOutlineSearch}
-          className="hidden lg:inline"
+          className="hidden lg:inline "
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
-      <Button className="w-12 h-10 lg:hidden" color="red" pill>
+      <Button className="w-20 h-12 lg:hidden" color="red" pill>
         <AiOutlineSearch />
       </Button>
       <div className="flex gap-2 md:order-2">
         <Button
-          className="w-12 h-10 hidden sm:inline"
+          className="w-20 h-12 hidden sm:inline"
           color="red"
           pill
           onClick={() => dispatch(toggleTheme())}
@@ -98,9 +99,9 @@ const Header = () => {
           >
             <Dropdown.Header>
               <span className="block text-sm">@{currentUser.username}</span>
-              <span className="block text-sm font-medium truncate">
+              {/* <span className="block text-sm font-medium truncate">
                 @{currentUser.email}
-              </span>
+              </span> */}
             </Dropdown.Header>
             <Link to={"/dashboard?tab=profile"}>
               <Dropdown.Item>Profile</Dropdown.Item>
@@ -119,13 +120,19 @@ const Header = () => {
       </div>
       <Navbar.Collapse>
         <Navbar.Link active={path === "/"} as={"div"}>
-          <Link to="/">Home</Link>
+          <Link to="/" className="text-lg">
+            Home
+          </Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/about"} as={"div"}>
-          <Link to="/about">About</Link>
+          <Link to="/about" className="text-lg">
+            About
+          </Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/projects"} as={"div"}>
-          <Link to="/projects">Projects</Link>
+          <Link to="/projects" className="text-lg">
+            Projects
+          </Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

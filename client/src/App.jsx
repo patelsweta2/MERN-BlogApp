@@ -15,17 +15,18 @@ import {
   Header,
   Footer,
   PrivateRoute,
-  StickyHeader,
   OnlyAdminPrivateRoute,
   ScrollToTop,
 } from "./components";
+import Headroom from "react-headroom";
+
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      {/* <StickyHeader> */}
-      <Header />
-      {/* </StickyHeader> */}
+      <Headroom>
+        <Header />
+      </Headroom>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

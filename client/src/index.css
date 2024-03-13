@@ -4,6 +4,17 @@
 
 body {
   height: 100vh;
+  /* padding-top: 80px; */
+  /* overflow-x: hidden; */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  */
+  z-index: 1000;
 }
 
 .ql-editor {
