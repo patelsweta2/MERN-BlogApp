@@ -26,7 +26,7 @@ export const create = async (req, res, next) => {
   }
 };
 
-export const getposts = async (req, res, nest) => {
+export const getposts = async (req, res, next) => {
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 9;
@@ -79,26 +79,39 @@ export const deletepost = async (req, res, next) => {
 };
 
 export const updatepost = async (req, res, next) => {
+  const { title, content, category, image } = req.body;
+  const postId = req.params.postId;
+  console.log("Request Parameters:", req.params);
+  if (!postId) {
+    return res
+      .status(400)
+      .json({ error: "postId is missing in the request parameters" });
+  }
   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
     return next(errorHandler(403, "You are not allowed to update this post"));
   }
   try {
     const updatedPost = await Post.findByIdAndUpdate(
-      req.params.postId,
+      postId,
       {
         $set: {
-          title: req.body.title,
-          content: req.body.content,
-          category: req.body.category,
-          image: req.body.image,
+          title,
+          content,
+          category,
+          image,
         },
       },
       { new: true }
     );
 
+    if (!updatedPost) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
     res.status(200).json(updatedPost);
   } catch (error) {
     console.error("Error updating post:", error);
+    res.status(500).json({ error: "Internal Server Error" });
     next(error);
   }
 };

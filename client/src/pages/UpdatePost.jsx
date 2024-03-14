@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import {
   getDownloadURL,
   getStorage,
@@ -7,21 +8,22 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { app } from "../firebase";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const UpdatePost = () => {
+export default function UpdatePost() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const { postId } = useParams();
-  const { currentUser } = useSelector((state) => state.user);
+
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     try {
@@ -36,15 +38,18 @@ const UpdatePost = () => {
         if (res.ok) {
           setPublishError(null);
           setFormData(data.posts[0]);
+          console.log(data.posts[0]);
+          console.log(formData._id);
         }
       };
+
       fetchPost();
     } catch (error) {
       console.log(error.message);
     }
   }, [postId]);
 
-  const handleUploadImage = async () => {
+  const handleUpdloadImage = async () => {
     try {
       if (!file) {
         setImageUploadError("Please select an image");
@@ -80,7 +85,6 @@ const UpdatePost = () => {
       console.log(error);
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -108,10 +112,9 @@ const UpdatePost = () => {
       setPublishError("Something went wrong");
     }
   };
-
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">Update Post</h1>
+      <h1 className="text-center text-3xl my-7 font-semibold">Update post</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
@@ -132,9 +135,9 @@ const UpdatePost = () => {
             value={formData.category}
           >
             <option value="uncategorized">Select a category</option>
-            <option value="javascript">Javascript</option>
-            <option value="reactjs">ReactJs</option>
-            <option value="nextjs">NextJs</option>
+            <option value="javascript">JavaScript</option>
+            <option value="reactjs">React.js</option>
+            <option value="nextjs">Next.js</option>
           </Select>
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
@@ -148,7 +151,7 @@ const UpdatePost = () => {
             gradientDuoTone="purpleToBlue"
             size="sm"
             outline
-            onClick={handleUploadImage}
+            onClick={handleUpdloadImage}
             disabled={imageUploadProgress}
           >
             {imageUploadProgress ? (
@@ -174,10 +177,12 @@ const UpdatePost = () => {
         <ReactQuill
           theme="snow"
           value={formData.content}
-          placeholder="write something..."
+          placeholder="Write something..."
           className="h-72 mb-12"
           required
-          onChange={(value) => setFormData({ ...formData, content: value })}
+          onChange={(value) => {
+            setFormData({ ...formData, content: value });
+          }}
         />
         <Button type="submit" gradientDuoTone="purpleToPink">
           Update post
@@ -190,6 +195,4 @@ const UpdatePost = () => {
       </form>
     </div>
   );
-};
-
-export default UpdatePost;
+}
