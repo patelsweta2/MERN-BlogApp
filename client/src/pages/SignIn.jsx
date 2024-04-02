@@ -64,6 +64,13 @@ function SignIn() {
               </span>
               Blog
             </Link>
+            <div className="mt-4 md:mt-8 w-42 h-32 rounded overflow-hidden">
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/010/925/820/non_2x/colorful-welcome-design-template-free-vector.jpg"
+                alt="Sample Image"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </motion.div>
           <p className="text-sm mt-5 italic font-semibold text-slate-600">
             Embark on a journey of words. Join our blogging community and let
