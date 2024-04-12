@@ -101,6 +101,7 @@ export default function UpdatePost() {
       const data = await res.json();
       if (!res.ok) {
         setPublishError(data.message);
+        console.log(data.message);
         return;
       }
 
