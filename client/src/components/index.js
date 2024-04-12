@@ -16,3 +16,4 @@ export { default as ScrollToTop } from "./ScrollToTop";
 export { default as PostCard } from "./PostCard";
 export { default as DashComments } from "./DashComments";
 export { default as DashBoardComp } from "./DashBoardComp";
+export { default as ProgressBar } from "./ProgressBar";

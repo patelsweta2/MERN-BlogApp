@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
+import {
+  Alert,
+  Button,
+  Label,
+  Spinner,
+  TextInput,
+  Radio,
+} from "flowbite-react";
 import { Oauth } from "../components";
 
 function SignUp() {
   const [formData, setFormData] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
+    // setIsAdmin(e.target.checked);
   };
 
   const handleSubmit = async (e) => {
@@ -106,6 +115,14 @@ function SignUp() {
                 onChange={handleChange}
               />
             </div>
+            {/* <div className="flex items-center gap-2">
+              <Radio id="user" name="user" value="User" defaultChecked />
+              <Label htmlFor="user">User</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Radio id="admin" name="admin" value="Admin" />
+              <Label htmlFor="admin">Admin</Label>
+            </div> */}
 
             <Button
               gradientDuoTone="pinkToOrange"

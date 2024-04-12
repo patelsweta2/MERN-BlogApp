@@ -18,7 +18,10 @@ const CallToAction = () => {
         </Button>
       </div>
       <div className="p-7 flex-1">
-        <img src="https://www.david-dahan.com/img/blog/blog.jpg" />
+        <img
+          className="rounded"
+          src="https://www.david-dahan.com/img/blog/blog.jpg"
+        />
       </div>
     </div>
   );
