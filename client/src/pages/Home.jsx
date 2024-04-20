@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import { CallToAction, PostCard } from "../components";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const variants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
+  };
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await fetch("/server/post/getPosts");
@@ -15,7 +20,16 @@ function Home() {
   return (
     <div>
       <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold lg:text-6xl">Welcome to my Blog</h1>
+        <motion.h1
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5 }}
+          variants={variants}
+          className="text-3xl font-bold lg:text-6xl"
+        >
+          <span>Welcome to {""}</span>
+          <span className="text-coral-red inline-block mt-3">NamasteNest</span>
+        </motion.h1>
         <p className="text-gray-500 text-xs sm:text-sm">
           Welcome to our corner of the internet, where stories are told, ideas
           are shared, and conversations flourish. Enjoy the journey with us!

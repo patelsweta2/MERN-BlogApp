@@ -6,7 +6,11 @@ export default {
     "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "coral-red": "#FF4040", // Example hex color for coral red
+      },
+    },
   },
   plugins: [require("flowbite/plugin"), require("tailwind-scrollbar")],
 };
