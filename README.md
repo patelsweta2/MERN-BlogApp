@@ -15,4 +15,12 @@ Welcome to my MERN (MongoDB, Express.js, React.js, Node.js) blog application! Th
 👩‍💻 Tech Stack: MongoDB, Express.js, React.js, Node.js (MERN stack), Redux for state management, and more!
 
 
+React + Vite
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+@vitejs/plugin-react uses Babel for Fast Refresh
+@vitejs/plugin-react-swc uses SWC for Fast Refresh
+
 
