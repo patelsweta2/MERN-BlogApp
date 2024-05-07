@@ -16,6 +16,8 @@ Welcome to my MERN (MongoDB, Express.js, React.js, Node.js) blog application! Th
 
 
 React + Vite
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
