@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
-import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice";
 import { signoutSuccess } from "../redux/user/userSlice";
@@ -50,13 +49,8 @@ const Header = () => {
   };
 
   return (
-    <Navbar className="border-b-2  flex items-center justify-between">
-      <motion.div
-        whileInView={{ x: [-100, 0], opacity: [0, 1] }}
-        transition={{ duration: 0.5 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
+    <Navbar className="flex items-center justify-between">
+      <div>
         <Link
           to="/"
           className="self-center whitespace-nowrap text-lg sm:text-xl font-semibold dark:text-white"
@@ -66,13 +60,13 @@ const Header = () => {
           </span>
           Blog
         </Link>
-      </motion.div>
+      </div>
       <form onSubmit={handleSubmit}>
         <TextInput
           type="text"
           placeholder="Search..."
           rightIcon={AiOutlineSearch}
-          className="hidden lg:inline "
+          className="hidden lg:inline"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

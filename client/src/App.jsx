@@ -18,15 +18,12 @@ import {
   OnlyAdminPrivateRoute,
   ScrollToTop,
 } from "./components";
-import Headroom from "react-headroom";
 
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Headroom>
-        <Header />
-      </Headroom>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
