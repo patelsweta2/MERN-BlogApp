@@ -13,9 +13,31 @@ const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sticky, setSticky] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleScroll = () => {
+    if (window.scrollY > 10) {
+      setSticky(true);
+    } else {
+      setSticky(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const goTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -49,10 +71,15 @@ const Header = () => {
   };
 
   return (
-    <Navbar className="flex items-center justify-between">
+    <Navbar
+      className={`flex items-center justify-between py-4 px-12 fixed top-0 left-0 right-0 w-full z-50 ${
+        sticky ? "shadow-xl" : ""
+      } ${theme === "dark" ? "dark bg-opacity-80" : "bg-opacity-50 bg-white"}`}
+    >
       <div>
         <Link
           to="/"
+          onClick={goTop}
           className="self-center whitespace-nowrap text-lg sm:text-xl font-semibold dark:text-white"
         >
           <span className="px-2 py-2 bg-gradient-to-r from-yellow-500 via-red-500 to-yellow-500 rounded-xl text-white">
@@ -97,7 +124,7 @@ const Header = () => {
                 @{currentUser.email}
               </span> */}
             </Dropdown.Header>
-            <Link to={"/dashboard?tab=profile"}>
+            <Link onClick={goTop} to={"/dashboard?tab=profile"}>
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
             <Dropdown.Divider />
@@ -114,17 +141,17 @@ const Header = () => {
       </div>
       <Navbar.Collapse>
         <Navbar.Link active={path === "/"} as={"div"}>
-          <Link to="/" className="text-lg">
+          <Link onClick={goTop} to="/" className="text-lg">
             Home
           </Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/about"} as={"div"}>
-          <Link to="/about" className="text-lg">
+          <Link onClick={goTop} to="/about" className="text-lg">
             About
           </Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/projects"} as={"div"}>
-          <Link to="/projects" className="text-lg">
+          <Link onClick={goTop} to="/projects" className="text-lg">
             Projects
           </Link>
         </Navbar.Link>
