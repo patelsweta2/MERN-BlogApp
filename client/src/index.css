@@ -51,7 +51,7 @@ body {
 }
 
 .hero-section {
-  background-image: url("../public/hero.jpg");
+  background-image: url(../public/blogg.jpg);
   /* background-color: bisque; */
   width: 100%;
   height: 100vh;
@@ -68,11 +68,11 @@ body {
 .th {
   color: #242425;
 }
-.hero-text {
+/* .hero-text {
   top: 55%;
   right: 12px;
   transform: translate(-50%, -50%);
-}
+} */
 .btn {
   background-color: red;
   color: white;
@@ -96,7 +96,7 @@ body {
 .nav-item {
   line-height: 40px;
   margin-right: 1rem;
-  color: #fff;
+  color: #6d6b6b;
 }
 
 .nav-item:after {
