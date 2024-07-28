@@ -1,8 +1,8 @@
-import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
-import React, { useEffect, useState } from "react";
+// import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { FaMoon, FaSun, FaAngleDown, FaBars } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice";
 import { signoutSuccess } from "../redux/user/userSlice";
@@ -14,9 +14,16 @@ const Header = () => {
   const { theme } = useSelector((state) => state.theme);
   const [searchTerm, setSearchTerm] = useState("");
   const [sticky, setSticky] = useState(false);
+  const [click, setClick] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   const handleScroll = () => {
     if (window.scrollY > 10) {
@@ -25,6 +32,19 @@ const Header = () => {
       setSticky(false);
     }
   };
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -37,6 +57,7 @@ const Header = () => {
       top: 0,
       behavior: "smooth",
     });
+    setClick(!click);
   };
 
   useEffect(() => {
@@ -71,16 +92,16 @@ const Header = () => {
   };
 
   return (
-    <Navbar
-      className={`flex items-center justify-between py-4 px-12 fixed top-0 left-0 right-0 w-full z-50 ${
+    <nav
+      className={`flex items-center bg-[#E3E4E8] justify-between py-4 px-12 fixed top-0 left-0 right-0 w-full z-50 ${
         sticky ? "shadow-xl" : ""
-      } ${theme === "dark" ? "dark bg-opacity-80" : "bg-opacity-50 bg-white"}`}
+      } dark:bg-black`}
     >
       <div>
         <Link
           to="/"
           onClick={goTop}
-          className="self-center whitespace-nowrap text-lg sm:text-xl font-semibold dark:text-white"
+          className="self-center whitespace-nowrap text-lg min620:text-xl font-semibold dark:text-white left-4"
         >
           <span className="px-2 py-2 bg-gradient-to-r from-yellow-500 via-red-500 to-yellow-500 rounded-xl text-white">
             NamasteNest
@@ -89,74 +110,169 @@ const Header = () => {
         </Link>
       </div>
       <form onSubmit={handleSubmit}>
-        <TextInput
-          type="text"
+        <input
           placeholder="Search..."
           rightIcon={AiOutlineSearch}
-          className="hidden lg:inline"
+          type="search"
+          className="md:block hidden border-[1px] rounded text-[#444] text-[16px] font-medium h-[45px] py-[5px] px-[20px] w-full outline-none focus:outline-none focus:ring-0 focus:border-transparent"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
-      <Button className="w-20 h-12 lg:hidden" color="red" pill>
+      <button
+        className="w-20 h-12 flex justify-center md:hidden rounded-2xl items-center bg-slate-300"
+        color="red"
+      >
         <AiOutlineSearch />
-      </Button>
-      <div className="flex gap-2 md:order-2">
-        <Button
-          className="w-20 h-12 hidden sm:inline"
-          color="red"
-          pill
-          onClick={() => dispatch(toggleTheme())}
-        >
-          {theme === "light" ? <FaMoon /> : <FaSun />}
-        </Button>
-        {currentUser ? (
-          <Dropdown
-            arrowIcon={false}
-            inline
-            label={
-              <Avatar alt="user" img={currentUser.profilePicture} rounded />
-            }
+      </button>
+      <ul className={click ? "nav-menu active" : "nav-menu"}>
+        <li className="nav-item">
+          <Link
+            onClick={goTop}
+            to="/"
+            className="text-lg hover:text-red-500 transition-colors"
           >
-            <Dropdown.Header>
-              <span className="block text-sm">@{currentUser.username}</span>
-              {/* <span className="block text-sm font-medium truncate">
-                @{currentUser.email}
-              </span> */}
-            </Dropdown.Header>
-            <Link onClick={goTop} to={"/dashboard?tab=profile"}>
-              <Dropdown.Item>Profile</Dropdown.Item>
-            </Link>
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={handleSignout}>Sign Out</Dropdown.Item>
-          </Dropdown>
-        ) : (
-          <Link to="/sign-in">
-            <Button gradientDuoTone="pinkToOrange" outline>
-              Sign In
-            </Button>
-          </Link>
-        )}
-        <Navbar.Toggle />
-      </div>
-      <Navbar.Collapse>
-        <Navbar.Link active={path === "/"} as={"div"}>
-          <Link onClick={goTop} to="/" className="text-lg">
             Home
           </Link>
-        </Navbar.Link>
-        <Navbar.Link active={path === "/about"} as={"div"}>
-          <Link onClick={goTop} to="/about" className="text-lg">
+        </li>
+        <li className="nav-item">
+          <Link
+            onClick={goTop}
+            to="/about"
+            className="text-lg hover:text-red-500 transition-colors"
+          >
             About
           </Link>
-        </Navbar.Link>
-        <Navbar.Link active={path === "/projects"} as={"div"}>
-          <Link onClick={goTop} to="/projects" className="text-lg">
+        </li>
+        <li className="nav-item">
+          <Link
+            onClick={goTop}
+            to="/projects"
+            className="text-lg hover:text-red-500 transition-colors"
+          >
             Projects
           </Link>
-        </Navbar.Link>
-      </Navbar.Collapse>
-    </Navbar>
+        </li>
+      </ul>
+
+      {/* <div className="hidden md:flex space-x-5">
+        <Link
+          onClick={goTop}
+          to="/"
+          className="text-lg hover:text-red-500 transition-colors"
+        >
+          Home
+        </Link>
+        <Link
+          onClick={goTop}
+          to="/about"
+          className="text-lg hover:text-red-500 transition-colors"
+        >
+          About
+        </Link>
+        <Link
+          onClick={goTop}
+          to="/projects"
+          className="text-lg hover:text-red-500 transition-colors"
+        >
+          Projects
+        </Link>
+      </div> */}
+
+      <div className="flex gap-2 md:order-1">
+        <button
+          className="w-20 h-12 md:flex bg-slate-800 hidden items-center justify-center rounded-full dark:bg-white"
+          onClick={() => dispatch(toggleTheme())}
+        >
+          {theme === "light" ? (
+            <FaMoon className="text-white" />
+          ) : (
+            <FaSun className="text-black" />
+          )}
+        </button>
+        <div
+          className="md:hidden flex items-center justify-center text-slate-500 w-16 h-12"
+          onClick={goTop}
+        >
+          {click ? (
+            <span className="icon">
+              <FaBars />{" "}
+            </span>
+          ) : (
+            <span className="icon">
+              <FaBars />
+            </span>
+          )}
+        </div>
+        {currentUser ? (
+          <div className="relative inline-block text-left">
+            <div>
+              <button
+                type="button"
+                onClick={toggleDropdown}
+                className="flex items-center"
+              >
+                <img
+                  src={currentUser.profilePicture}
+                  alt="User Profile"
+                  className="w-10 h-10 rounded-full"
+                />
+              </button>
+            </div>
+            {dropdownOpen && (
+              <div
+                ref={dropdownRef}
+                className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
+                <div
+                  className="py-1"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="options-menu"
+                >
+                  <div className="px-4 py-2">
+                    <span className="block text-sm text-black">
+                      @{currentUser.username}
+                    </span>
+                    {/* Display other user details as needed */}
+                  </div>
+                  <Link
+                    onClick={() => {
+                      setDropdownOpen(false);
+                      goTop();
+                    }}
+                    to="/dashboard?tab=profile"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={handleSignout}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    // role="menuitem"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <Link to="/sign-in">
+            <button className="gradient-duo-tone-pink-to-orange outline">
+              Sign In
+            </button>
+          </Link>
+        )}
+        <button
+          className="hidden md1000:inline"
+          onClick={() => dispatch(toggleTheme())}
+        >
+          <FaSun />
+        </button>
+      </div>
+    </nav>
   );
 };
 

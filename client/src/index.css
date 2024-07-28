@@ -51,13 +51,95 @@ body {
 }
 
 .hero-section {
-  background-image: url("../public/Blog-hero.jpg");
+  background-image: url("../public/hero.jpg");
+  /* background-color: bisque; */
   width: 100%;
-  height: 110vh;
+  height: 100vh;
   object-fit: cover;
   background-size: cover;
   background-position: center center;
+  /* background-repeat: no-repeat;  */
+}
+
+.container-hero {
+  max-width: 111.6rem;
+  margin: 0 auto;
 }
 .th {
-  color: #202124;
+  color: #242425;
+}
+.hero-text {
+  top: 55%;
+  right: 12px;
+  transform: translate(-50%, -50%);
+}
+.btn {
+  background-color: red;
+  color: white;
+  padding: 0.8rem 0.1rem;
+  width: 150px;
+  border-radius: 3px;
+  box-shadow: 0 10px 15px 0 rgb(255 83 48 / 35%);
+  transition: all 0.3s;
+}
+.btn:hover {
+  box-shadow: 0 10px 15px 0 rgb(255 83 48 / 50%);
+  background-color: #fa4226;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  text-align: center;
+  margin-right: 2rem;
+}
+.nav-item {
+  line-height: 40px;
+  margin-right: 1rem;
+  color: #fff;
+}
+
+.nav-item:after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 0;
+  background: transparent;
+  transition: width 0.7s ease, background-color 0.5s ease;
+}
+
+.nav-item:hover:after {
+  width: 100%;
+  background: #ffdd40;
+}
+
+.nav-item .active {
+  color: #ffdd40;
+  border: 1px solid #ffdd40;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid #fff;
+    position: absolute;
+    top: 80px;
+    left: -110%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+  .nav-menu.active {
+    background: #1f5156;
+    left: 0px;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+  .nav-item .active {
+    color: #ffdd40;
+    border: none;
+  }
 }
