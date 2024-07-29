@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { motion } from "framer-motion";
 import { TextInput, Button, Alert, Modal } from "flowbite-react";
 import { useState, useRef, useEffect } from "react";
 import {
@@ -176,7 +175,7 @@ const DashProfile = () => {
           ref={filePickerRef}
           hidden
         />
-        <motion.div
+        <div
           className=" relative w-32 h-32 self-center cursor-pointer shadow-md overflow-hidden rounded-full"
           onClick={() => filePickerRef.current.click()}
         >
@@ -208,47 +207,53 @@ const DashProfile = () => {
               "opacity-60"
             }`}
           />
-        </motion.div>
+        </div>
         {imageFileUploadError && (
-          <Alert color="failure">{imageFileUploadError}</Alert>
+          <span
+            color="failure"
+            className="w-full block rounded-md p-1 bg-red-500 text-gray-300 text-center"
+          >
+            {imageFileUploadError}
+          </span>
         )}
-        <TextInput
+        <input
+          className="w-full rounded-md mt-1 text-black"
           type="text"
           id="username"
           placeholder="username"
           defaultValue={currentUser.username}
           onChange={handleChange}
         />
-        <TextInput
+        <input
+          className="w-full rounded-md mt-1 text-black"
           type="email"
           id="email"
           placeholder="email"
           defaultValue={currentUser.email}
           onChange={handleChange}
         />
-        <TextInput
+        <input
+          className="w-full rounded-md mt-1 text-black"
           type="password"
           id="password"
           placeholder="password"
           onChange={handleChange}
         />
-        <Button
+        <button
           type="submit"
-          gradientDuoTone="greenToBlue"
-          outline
+          className="bg-amber-300 text-black hover:bg-orange-500 hover:text-white hover:shadow-lg outline transition duration-300 ease-in-out h-10 rounded-md"
           disabled={loading || imageFileUploading}
         >
           {loading ? "Loading..." : "Update"}
-        </Button>
+        </button>
         {currentUser.isAdmin && (
           <Link to={"/create-post"}>
-            <Button
+            <button
               type="button"
-              gradientDuoTone="greenToBlue"
-              className="w-full"
+              className="w-full bg-green-300 text-black hover:bg-green-500 hover:text-white hover:shadow-lg outline transition duration-300 ease-in-out h-10 rounded-md"
             >
               Create a post
-            </Button>
+            </button>
           </Link>
         )}
       </form>
