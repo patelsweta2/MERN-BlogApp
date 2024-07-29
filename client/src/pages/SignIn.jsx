@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   signInStart,
@@ -49,7 +48,7 @@ function SignIn() {
   console.log(formData);
   return (
     <div className="mt-20 min-h-screen ">
-      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
+      <div className="flex p-3 max-w-3xl mx-auto min-h-screen flex-col md:flex-row md:items-center gap-5">
         <div className="flex-1">
           <div>
             <Link to="/" className="font-bold dark:text-white text-4xl">
@@ -58,14 +57,6 @@ function SignIn() {
               </span>
               Blog
             </Link>
-
-            <div className="mt-4 md:mt-8 w-42 h-32 rounded overflow-hidden">
-              <img
-                src="https://static.vecteezy.com/system/resources/previews/010/925/820/non_2x/colorful-welcome-design-template-free-vector.jpg"
-                alt="Sample Image"
-                className="w-full h-full object-cover"
-              />
-            </div>
           </div>
           <p className="text-sm mt-5 italic font-semibold text-slate-600">
             Embark on a journey of words. Join our blogging community and let
@@ -75,8 +66,9 @@ function SignIn() {
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div>
-              <Label value="Your email" />
-              <TextInput
+              <label className="block">Your email</label>
+              <input
+                className="w-full rounded-md mt-1 text-black"
                 type="text"
                 placeholder="name@gmail.com"
                 id="email"
@@ -84,8 +76,9 @@ function SignIn() {
               />
             </div>
             <div>
-              <Label value="Your password" />
-              <TextInput
+              <label className="block">Your password</label>
+              <input
+                className="w-full rounded-md mt-1 text-black"
                 type="password"
                 placeholder="*******"
                 id="password"
@@ -93,20 +86,20 @@ function SignIn() {
               />
             </div>
 
-            <Button
-              gradientDuoTone="pinkToOrange"
+            <button
+              className="bg-orange-300 text-black hover:bg-orange-500 hover:text-white hover:shadow-lg outline transition duration-300 ease-in-out h-12 rounded-md"
               type="submit"
               disabled={loading}
             >
               {loading ? (
                 <>
-                  <Spinner size="sm" />
+                  {/* <Spinner size="sm" /> */}
                   <span className="pl-3">Loading...</span>
                 </>
               ) : (
                 "Sign In"
               )}
-            </Button>
+            </button>
             <Oauth />
           </form>
           <div className="flex gap-2 text-sm mt-5">
@@ -116,9 +109,14 @@ function SignIn() {
             </Link>
           </div>
           {errorMessage && (
-            <Alert className="mt-5" color="failure">
-              {errorMessage}
-            </Alert>
+            <div className="mt-3">
+              <span
+                className="w-full block rounded-md p-1 bg-red-500 text-gray-300 text-center"
+                color="failure"
+              >
+                {errorMessage}
+              </span>
+            </div>
           )}
         </div>
       </div>

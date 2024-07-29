@@ -179,7 +179,7 @@ const Header = () => {
         </Link>
       </div> */}
 
-      <div className="flex gap-2 md:order-1">
+      <div className="flex gap-2 items-center md:order-1">
         <button
           className="w-20 h-12 md:flex bg-slate-800 hidden items-center justify-center rounded-full dark:bg-white"
           onClick={() => dispatch(toggleTheme())}
@@ -215,7 +215,7 @@ const Header = () => {
                 <img
                   src={currentUser.profilePicture}
                   alt="User Profile"
-                  className="w-10 h-10 rounded-full"
+                  className="w-11 h-11 rounded-full"
                 />
               </button>
             </div>
@@ -260,7 +260,7 @@ const Header = () => {
           </div>
         ) : (
           <Link to="/sign-in">
-            <button className="gradient-duo-tone-pink-to-orange outline">
+            <button className="rounded-md outline p-2 bg-neutral-300 text-black hover:bg-emerald-700 hover:text-white hover:shadow-lg transition duration-300 ease-in-out">
               Sign In
             </button>
           </Link>

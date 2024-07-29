@@ -41,15 +41,14 @@ const Oauth = () => {
     }
   };
   return (
-    <Button
+    <button
+      className="outline h-12 bg-transparent flex items-center justify-center rounded-md hover:bg-emerald-700 hover:text-white hover:shadow-lg transition duration-300 ease-in-out"
       type="button"
-      gradientDuoTone="greenToBlue"
-      outline
       onClick={handleGoogleClick}
     >
-      <AiFillGoogleCircle className="w-6 h-6 mr-2" />
+      <AiFillGoogleCircle className="w-6 h-6 mr-2 rounded-md" />
       Continue with Google
-    </Button>
+    </button>
   );
 };
 
