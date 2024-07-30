@@ -112,7 +112,6 @@ const Header = () => {
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Search..."
-          rightIcon={AiOutlineSearch}
           type="search"
           className="md:block hidden border-[1px] rounded text-[#444] text-[16px] font-medium h-[45px] py-[5px] px-[20px] w-full outline-none focus:outline-none focus:ring-0 focus:border-transparent"
           value={searchTerm}

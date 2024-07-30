@@ -1,9 +1,9 @@
-import { Textarea, Button, Alert, Modal } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Comment from "./Comment";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import Alert from "./Alert";
 
 const CommentSection = ({ postId }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -141,20 +141,31 @@ const CommentSection = ({ postId }) => {
           onSubmit={handleSubmit}
           className="border border-teal-500 rounded-md p-3"
         >
-          <Textarea
+          <textarea
+            className="p-2 border w-full h-auto dark:bg-zinc-600 dark:text-white border-none rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
             placeholder="Add a comment..."
             rows="3"
             maxLength="250"
             onChange={(e) => setComment(e.target.value)}
             value={comment}
           />
+          {/* <Textarea
+            placeholder="Add a comment..."
+            rows="3"
+            maxLength="250"
+            onChange={(e) => setComment(e.target.value)}
+            value={comment}
+          /> */}
           <div className="flex justify-between item-center mt-5">
             <p className="text-gray-500 text-xs">
               {250 - comment.length} characters remaining
             </p>
-            <Button outline gradientDuoTone="purpleToBlue" type="submit">
+            <button
+              className="rounded-md w-20 border-2 border-pink-600 p-2 font-medium text-sm hover:bg-pink-700 hover:text-white hover:shadow-lg transition duration-300 ease-in-out"
+              type="submit"
+            >
               Submit
-            </Button>
+            </button>
           </div>
           {commentError && (
             <Alert color="failure" className="mt-5">
@@ -187,7 +198,41 @@ const CommentSection = ({ postId }) => {
           ))}
         </>
       )}
-      <Modal
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg max-w-md w-full p-6">
+            <div className="flex justify-end">
+              <button
+                className="text-2xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                onClick={() => setShowModal(false)}
+              >
+                &times;
+              </button>
+            </div>
+            <div className="text-center">
+              <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
+              <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
+                Are you sure you want to delete this comment?
+              </h3>
+              <div className="flex justify-center gap-4">
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                  onClick={() => handleDelete(commentToDelete)}
+                >
+                  Yes, I'm sure
+                </button>
+                <button
+                  className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600"
+                  onClick={() => setShowModal(false)}
+                >
+                  No, cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
         popup
@@ -213,7 +258,7 @@ const CommentSection = ({ postId }) => {
             </div>
           </div>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
