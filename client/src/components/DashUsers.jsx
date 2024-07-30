@@ -72,7 +72,57 @@ const DashUsers = () => {
     >
       {currentUser.isAdmin && users.length > 0 ? (
         <>
-          <Table hoverable className="shadow-md">
+          <div className="container mx-auto px-4 py-8">
+            <table className="min-w-full bg-transparent dark:bg-zinc-700 bg-zinc-300 rounded-md overflow-hidden">
+              <thead>
+                <tr className="bg-zinc-600 text-white">
+                  <th className="py-3 px-5">Date Created</th>
+                  <th className="py-3 px-5">User image</th>
+                  <th className="py-3 px-5">Username</th>
+                  <th className="py-3 px-5">Email</th>
+                  <th className="py-3 px-5">Admin</th>
+                  <th className="py-3 px-5">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user._id} className="border-t hover:bg-zinc-400 ">
+                    <td className="py-4 px-4">
+                      {new Date(user.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="py-4 px-4">
+                      <img
+                        src={user.profilePicture}
+                        alt={user.username}
+                        className="w-10 h-10 object-cover bg-gray-500 rounded-full"
+                      />
+                    </td>
+                    <td className="py-4 px-4">{user.username}</td>
+                    <td className="py-4 px-4">{user.email}</td>
+                    <td className="py-4 px-4">
+                      {user.isAdmin ? (
+                        <FaCheck className="text-green-500" />
+                      ) : (
+                        <FaTimes className="text-red-500" />
+                      )}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        onClick={() => {
+                          setShowModal(true);
+                          setUserIdToDelete(user._id);
+                        }}
+                        className="font-medium text-red-500 hover:underline cursor-pointer"
+                      >
+                        Delete
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {/* <Table hoverable className="shadow-md">
             <Table.Head>
               <Table.HeadCell>Date created</Table.HeadCell>
               <Table.HeadCell>User image</Table.HeadCell>
@@ -117,7 +167,7 @@ const DashUsers = () => {
                 </Table.Row>
               </Table.Body>
             ))}
-          </Table>
+          </Table> */}
           {showMore && (
             <button
               onClick={handleShowMore}
