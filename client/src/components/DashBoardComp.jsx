@@ -139,10 +139,7 @@ const DashBoardComp = () => {
               </thead>
               <tbody>
                 {users.map((user) => (
-                  <tr
-                    key={user._id}
-                    className="border-t hover:bg-zinc-400 hover:text-black"
-                  >
+                  <tr key={user._id} className="border-t hover:bg-zinc-400">
                     <td className="py-2 px-4">
                       <img
                         src={user.profilePicture}
@@ -176,10 +173,7 @@ const DashBoardComp = () => {
               </thead>
               <tbody>
                 {comments.map((comment) => (
-                  <tr
-                    key={comment._id}
-                    className="border-t hover:bg-zinc-400 hover:text-black"
-                  >
+                  <tr key={comment._id} className="border-t hover:bg-zinc-400">
                     <td className="py-4 px-5">
                       <p className="line-clamp-2">{comment.content}</p>
                     </td>
@@ -208,10 +202,7 @@ const DashBoardComp = () => {
               </thead>
               <tbody>
                 {posts.map((post) => (
-                  <tr
-                    key={post._id}
-                    className="border-t hover:bg-zinc-400 hover:text-black"
-                  >
+                  <tr key={post._id} className="border-t hover:bg-zinc-400">
                     <td className="py-4 px-5">
                       <img
                         src={post.image}

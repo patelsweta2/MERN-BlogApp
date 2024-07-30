@@ -78,7 +78,64 @@ const DashPost = () => {
     >
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
-          <Table hoverable className="shadow-md">
+          <div className="container mx-auto px-4 py-8">
+            <table className="min-w-full bg-transparent dark:bg-zinc-700 bg-zinc-300 rounded-md overflow-hidden">
+              <thead>
+                <tr className="bg-zinc-600 text-white">
+                  <th className="py-3 px-5">Date updated</th>
+                  <th className="py-3 px-5">Post Image</th>
+                  <th className="py-3 px-5">Post title</th>
+                  <th className="py-3 px-5">Category</th>
+                  <th className="py-3 px-5">Delete</th>
+                  <th className="py-3 px-5">
+                    <span className="hidden md:block">Edit</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {userPosts.map((post) => (
+                  <tr key={post._id} className="border-t hover:bg-zinc-400 ">
+                    <td className="py-4 px-4">
+                      {new Date(post.updatedAt).toLocaleDateString()}
+                    </td>
+                    <td className="py-4 px-4">
+                      <Link to={`/post/${post.slug}`}>
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-20 h-10 object-cover bg-gray-500 rounded-md"
+                        />
+                      </Link>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Link to={`/post/${post.slug}`}>{post.title}</Link>
+                    </td>
+                    <td className="py-4 px-4">{post.category}</td>
+                    <td className="py-4 px-4">
+                      <span
+                        onClick={() => {
+                          setShowModal(true);
+                          setPostIdToDelete(post._id);
+                        }}
+                        className="font-medium text-red-500 hover:underline cursor-pointer"
+                      >
+                        Delete
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Link
+                        className="text-teal-500"
+                        to={`/update-post/${post._id}`}
+                      >
+                        <span>Edit</span>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {/* <Table hoverable className="shadow-md">
             <Table.Head>
               <Table.HeadCell>Date updated</Table.HeadCell>
               <Table.HeadCell>Post Image</Table.HeadCell>
@@ -135,7 +192,7 @@ const DashPost = () => {
                 </Table.Row>
               </Table.Body>
             ))}
-          </Table>
+          </Table> */}
           {showMore && (
             <button
               onClick={handleShowMore}
