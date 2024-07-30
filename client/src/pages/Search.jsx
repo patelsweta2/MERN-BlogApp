@@ -1,4 +1,3 @@
-import { Button, Select, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PostCard } from "../components";
@@ -96,6 +95,55 @@ const Search = () => {
   };
 
   return (
+    // <div className="p-7 border-b md:border-r md:min-h-screen border-gray-500">
+    //   <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
+    //     <div className="flex items-center gap-2">
+    //       <label className="whitespace-nowrap font-semibold">
+    //         Search Term:{" "}
+    //       </label>
+    //       <input
+    //         placeholder="Search..."
+    //         id="searchTerm"
+    //         type="text"
+    //         value={sidebarData.searchTerm}
+    //         onChange={handleChange}
+    //         className="border rounded-md p-2"
+    //       />
+    //     </div>
+    //     <div className="flex items-center gap-2">
+    //       <label className="font-semibold">Sort:</label>
+    //       <select
+    //         onChange={handleChange}
+    //         value={sidebarData.sort}
+    //         id="sort"
+    //         className="border rounded-md p-2"
+    //       >
+    //         <option value="desc">Latest</option>
+    //         <option value="asc">Oldest</option>
+    //       </select>
+    //     </div>
+    //     <div className="flex items-center gap-2">
+    //       <label className="font-semibold">Category:</label>
+    //       <select
+    //         onChange={handleChange}
+    //         value={sidebarData.category}
+    //         id="category"
+    //         className="border rounded-md p-2"
+    //       >
+    //         <option value="uncategorized">Uncategorized</option>
+    //         <option value="reactjs">React.js</option>
+    //         <option value="nextjs">Next.js</option>
+    //         <option value="javascript">JavaScript</option>
+    //       </select>
+    //     </div>
+    //     <button
+    //       type="submit"
+    //       className="border rounded-md p-2 text-purple-500 border-purple-500 hover:bg-purple-500 hover:text-white"
+    //     >
+    //       Apply Filters
+    //     </button>
+    //   </form>
+    // </div>
     <div className="mt-20 flex flex-col md:flex-row">
       <div className="p-7 border-b md:border-r md:min-h-screen border-gray-500">
         <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
@@ -103,24 +151,35 @@ const Search = () => {
             <label className="whitespace-nowrap font-semibold">
               Search Term:{" "}
             </label>
-            <TextInput
+            <input
+              className="rounded-md border-red-400 outline-offset-0 focus:outline-none focus:border-none focus:ring-0 text-black"
               placeholder="Search..."
               id="searchTerm"
-              type="text"
+              type="search"
               value={sidebarData.searchTerm}
               onChange={handleChange}
             />
           </div>
           <div className="flex items-center gap-2">
             <label className="font-semibold">Sort:</label>
-            <Select onChange={handleChange} value={sidebarData.sort} id="sort">
-              <option value="desc">Latest</option>
-              <option value="desc">Oldest</option>
-            </Select>
+            <select
+              className="block appearance-none w-auto bg-zinc-300 text-black rounded-md py-2 px-4 pr-8 border border-transparent focus:border-transparent focus:ring-0 custom-select"
+              onChange={handleChange}
+              value={sidebarData.sort}
+              id="sort"
+            >
+              <option className="hover:bg-zinc-300" value="desc rounded-md">
+                Latest
+              </option>
+              <option className="hover:bg-zinc-300" value="desc rounded-md">
+                Oldest
+              </option>
+            </select>
           </div>
           <div className="flex items-center gap-2">
             <label className="font-semibold">Category:</label>
-            <Select
+            <select
+              className="block appearance-none w-auto bg-zinc-300 text-black rounded-md py-2 px-4 pr-8 border border-transparent focus:border-transparent focus:ring-0 custom-select"
               onChange={handleChange}
               value={sidebarData.category}
               id="category"
@@ -128,12 +187,16 @@ const Search = () => {
               <option value="uncategorized">Uncategorized</option>
               <option value="reactjs">React.js</option>
               <option value="nextjs">Next.js</option>
+              <option value="nextjs">Nature</option>
               <option value="javascript">JavaScript</option>
-            </Select>
+            </select>
           </div>
-          <Button type="submit" outline gradientDuoTone="purpleToPink">
+          <button
+            className="rounded-md outline border-white p-2 bg-amber-500 text-white hover:bg-pink-600 hover:shadow-lg transition duration-300 ease-in-out"
+            type="submit"
+          >
             Apply Filters
-          </Button>
+          </button>
         </form>
       </div>
       <div className="w-full">

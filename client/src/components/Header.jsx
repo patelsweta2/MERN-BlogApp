@@ -154,31 +154,6 @@ const Header = () => {
           </Link>
         </li>
       </ul>
-
-      {/* <div className="hidden md:flex space-x-5">
-        <Link
-          onClick={goTop}
-          to="/"
-          className="text-lg hover:text-red-500 transition-colors"
-        >
-          Home
-        </Link>
-        <Link
-          onClick={goTop}
-          to="/about"
-          className="text-lg hover:text-red-500 transition-colors"
-        >
-          About
-        </Link>
-        <Link
-          onClick={goTop}
-          to="/projects"
-          className="text-lg hover:text-red-500 transition-colors"
-        >
-          Projects
-        </Link>
-      </div> */}
-
       <div className="flex gap-2 items-center md:order-1">
         <button
           className="w-20 h-12 md:flex bg-slate-800 hidden items-center justify-center rounded-full dark:bg-white"
