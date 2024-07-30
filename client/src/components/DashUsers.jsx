@@ -1,4 +1,3 @@
-import { Table, Modal, Button } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -134,7 +133,41 @@ const DashUsers = () => {
       ) : (
         <p>You have no post yet!</p>
       )}
-      <Modal
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg max-w-md w-full p-6">
+            <div className="flex justify-end">
+              <button
+                className="text-2xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                onClick={() => setShowModal(false)}
+              >
+                &times;
+              </button>
+            </div>
+            <div className="text-center">
+              <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
+              <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
+                Are you sure you want to delete this user?
+              </h3>
+              <div className="flex justify-center gap-4">
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                  onClick={handleDeleteUser}
+                >
+                  Yes, I'm sure
+                </button>
+                <button
+                  className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600"
+                  onClick={() => setShowModal(false)}
+                >
+                  No, cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
         popup
@@ -157,7 +190,7 @@ const DashUsers = () => {
             </div>
           </div>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { TextInput, Button, Alert, Modal } from "flowbite-react";
+// import { Alert } from "flowbite-react";
 import { useState, useRef, useEffect } from "react";
 import {
   getDownloadURL,
@@ -22,6 +22,7 @@ import {
 import { useDispatch } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import Alert from "./Alert";
 
 const DashProfile = () => {
   const { currentUser, error, loading } = useSelector((state) => state.user);
@@ -164,6 +165,7 @@ const DashProfile = () => {
       console.log(error.message);
     }
   };
+
   return (
     <div className="max-w-lg mx-auto p-3 w-full">
       <h1 className="my-7 text-center font-semibold text-3xl">Profile</h1>
@@ -280,7 +282,41 @@ const DashProfile = () => {
           {error}
         </Alert>
       )}
-      <Modal
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg max-w-md w-full p-6">
+            <div className="flex justify-end">
+              <button
+                className="text-2xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                onClick={() => setShowModal(false)}
+              >
+                &times;
+              </button>
+            </div>
+            <div className="text-center">
+              <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
+              <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
+                Are you sure you want to delete your account?
+              </h3>
+              <div className="flex justify-center gap-4">
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                  onClick={handleDeleteUser}
+                >
+                  Yes, I'm sure
+                </button>
+                <button
+                  className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600"
+                  onClick={() => setShowModal(false)}
+                >
+                  No, cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
         popup
@@ -303,7 +339,7 @@ const DashProfile = () => {
             </div>
           </div>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
