@@ -9,17 +9,19 @@ const ProgressBar = () => {
       const scrollableHeight =
         document.documentElement.scrollHeight - window.innerHeight;
       const scrolledHeight = window.scrollY;
-      let progress;
 
-      // Check if scrolling direction is upwards
-      if (scrolledHeight < prevScrollPos) {
-        progress =
-          ((scrollableHeight - scrolledHeight) / scrollableHeight) * 100;
+      // Calculate progress based on scroll direction
+      if (scrolledHeight >= prevScrollPos) {
+        // Scrolling down
+        const progress = (scrolledHeight / scrollableHeight) * 100;
+        setScrollProgress(progress);
       } else {
-        progress = (scrolledHeight / scrollableHeight) * 100;
+        // Scrolling up
+        const progress =
+          ((scrollableHeight - scrolledHeight) / scrollableHeight) * 100;
       }
-
       setScrollProgress(progress);
+
       setPrevScrollPos(scrolledHeight);
     };
 
@@ -31,9 +33,9 @@ const ProgressBar = () => {
   }, [prevScrollPos]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 bg-white">
+    <div className="fixed top-[81px] left-0 w-full h-1 bg-white">
       <div
-        className="h-full bg-blue-500"
+        className="h-full bg-pink-500"
         style={{ width: `${scrollProgress}%` }}
       />
     </div>

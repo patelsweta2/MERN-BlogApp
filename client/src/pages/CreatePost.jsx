@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
 import {
   getDownloadURL,
   getStorage,
@@ -11,6 +10,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
+import Alert from "../components/Alert";
 
 const CreatePost = () => {
   const [file, setFile] = useState(null);
@@ -85,22 +85,27 @@ const CreatePost = () => {
     }
   };
 
+  const handleChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   return (
     <div className="mt-20 p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a Post</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
-          <TextInput
+          <input
             type="text"
             placeholder="Title"
             required
             id="title"
-            className="flex-1"
+            className="flex-1 rounded-md dark:bg-zinc-600 text-white focus:outline-none focus:border-none focus:ring-0 border-teal-500 border-2"
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
           />
-          <Select
+          <select
+            className="block appearance-none w-auto dark:bg-zinc-600 dark:text-white focus:border-teal-600 rounded-md border-2 py-2 px-4 pr-8 focus:border-transparent focus:ring-0 custom-select"
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -109,19 +114,36 @@ const CreatePost = () => {
             <option value="javascript">Javascript</option>
             <option value="reactjs">ReactJs</option>
             <option value="nextjs">NextJs</option>
-          </Select>
+            <option value="nature">Nature</option>
+          </select>
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
-          <FileInput
+          {/* <FileInput
             type="file"
             accept="image/*"
             onChange={(e) => setFile(e.target.files[0])}
+          /> */}
+          <input
+            className="block w-full text-sm text-gray-500 dark:text-gray-400
+            rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
+            file:mr-4 file:py-2 file:px-4
+            file:bg-violet-50 file:text-violet-700
+            hover:file:bg-violet-100
+            file:font-semibold
+            placeholder-gray-400"
+            type="file"
+            accept="image/*"
+            onChange={handleChange}
           />
-          <Button
+          {file && (
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              Selected file: {file.name}
+            </p>
+          )}
+          <button
             type="button"
-            gradientDuoTone="purpleToBlue"
             size="sm"
-            outline
+            className="rounded-md w-full outline border-white p-2 bg-amber-500 text-white hover:bg-pink-600 hover:shadow-lg transition duration-300 ease-in-out"
             onClick={handleUpdloadImage}
             disabled={imageUploadProgress}
           >
@@ -135,7 +157,7 @@ const CreatePost = () => {
             ) : (
               "Upload Image"
             )}
-          </Button>
+          </button>
         </div>
         {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
         {formData.image && (
@@ -152,9 +174,13 @@ const CreatePost = () => {
           required
           onChange={(value) => setFormData({ ...formData, content: value })}
         />
-        <Button type="submit" gradientDuoTone="purpleToPink">
+        <button
+          className="rounded-md w-full outline border-white p-2 bg-green-500 text-white hover:bg-green-700 hover:shadow-lg transition duration-300 ease-in-out"
+          type="submit"
+          gradientDuoTone="purpleToPink"
+        >
           Publish
-        </Button>
+        </button>
         {publishError && (
           <Alert className="mt-5" color="failure">
             {publishError}

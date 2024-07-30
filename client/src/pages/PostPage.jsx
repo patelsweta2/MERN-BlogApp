@@ -58,7 +58,7 @@ const PostPage = () => {
     );
 
   return (
-    <main className="mt-20 p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
+    <main className="mt-[80px] p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
       <ProgressBar />
       <h1 className="text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl">
         {post && post.title}
