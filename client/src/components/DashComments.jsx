@@ -80,40 +80,44 @@ const DashComments = () => {
     >
       {currentUser.isAdmin && comments.length > 0 ? (
         <>
-          <Table hoverable className="shadow-md">
-            <Table.Head>
-              <Table.HeadCell>Date updated</Table.HeadCell>
-              <Table.HeadCell>Comment content</Table.HeadCell>
-              <Table.HeadCell>Number of likes</Table.HeadCell>
-              <Table.HeadCell>PostId</Table.HeadCell>
-              <Table.HeadCell>UserId</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
-            </Table.Head>
-            {comments.map((comment) => (
-              <Table.Body className="divide-y" key={comment._id}>
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
-                    {new Date(comment.updatedAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>{comment.content}</Table.Cell>
-                  <Table.Cell>{comment.numberOfLikes}</Table.Cell>
-                  <Table.Cell>{comment.email}</Table.Cell>
-                  <Table.Cell>{comment.userId}</Table.Cell>
-                  <Table.Cell>
-                    <span
-                      onClick={() => {
-                        setShowModal(true);
-                        setCommentIdToDelete(comment._id);
-                      }}
-                      className="font-medium text-red-500 hover:underline cursor-pointer"
-                    >
-                      Delete
-                    </span>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            ))}
-          </Table>
+          <div className="container mx-auto px-4 py-8">
+            <table className="min-w-full bg-transparent dark:bg-zinc-700 bg-zinc-300 rounded-md overflow-hidden">
+              <thead>
+                <tr className="bg-zinc-600 text-white">
+                  <th className="py-3 px-5">Date updated</th>
+                  <th className="py-3 px-5">Comment content</th>
+                  <th className="py-3 px-5">Number of likes</th>
+                  <th className="py-3 px-5">PostId</th>
+                  <th className="py-3 px-5">UserId</th>
+                  <th className="py-3 px-5">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comments.map((comment) => (
+                  <tr key={comment._id} className="border-t hover:bg-zinc-400 ">
+                    <td className="py-4 px-4">
+                      {new Date(comment.updatedAt).toLocaleDateString()}
+                    </td>
+                    <td className="py-4 px-4">{comment.content}</td>
+                    <td className="py-4 px-4">{comment.numberOfLikes}</td>
+                    <td className="py-4 px-4">{comment.email}</td>
+                    <td className="py-4 px-4">{comment.userId}</td>
+                    <td className="py-4 px-4">
+                      <span
+                        onClick={() => {
+                          setShowModal(true);
+                          setCommentIdToDelete(comment._id);
+                        }}
+                        className="font-medium text-red-500 hover:underline cursor-pointer"
+                      >
+                        Delete
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           {showMore && (
             <button
               onClick={handleShowMore}
