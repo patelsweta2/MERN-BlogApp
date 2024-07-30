@@ -1,4 +1,3 @@
-import { Button, Table } from "flowbite-react";
 import { useEffect, useState } from "react";
 import {
   HiAnnotation,
@@ -69,7 +68,7 @@ const DashBoardComp = () => {
   return (
     <div className="p-3 md:mx-auto">
       <div className="flex-wrap flex gap-4 justify-center">
-        <div className="flex flex-col p-3 dark:bg-black gap-4 md:w-72 w-full rounded-md shadow-md">
+        <div className="flex flex-col p-3 bg-[#E3E4E8] dark:bg-black gap-4 md:w-72 w-full rounded-md shadow-md">
           <div className="flex justify-between">
             <div className="">
               <h3 className="text-gray-500 text-md uppercase">Total Users</h3>
@@ -85,7 +84,7 @@ const DashBoardComp = () => {
             <div className="text-gray-500">Last month</div>
           </div>
         </div>
-        <div className="flex flex-col p-3 dark:bg-black gap-4 md:w-72 w-full rounded-md shadow-md">
+        <div className="flex flex-col p-3 bg-[#E3E4E8] dark:bg-black gap-4 md:w-72 w-full rounded-md shadow-md">
           <div className="flex justify-between">
             <div className="">
               <h3 className="text-gray-500 text-md uppercase">
@@ -103,7 +102,7 @@ const DashBoardComp = () => {
             <div className="text-gray-500">Last month</div>
           </div>
         </div>
-        <div className="flex flex-col p-3 dark:bg-black gap-4 md:w-72 w-full rounded-md shadow-md">
+        <div className="flex flex-col p-3 bg-[#E3E4E8] dark:bg-black gap-4 md:w-72 w-full rounded-md shadow-md">
           <div className="flex justify-between">
             <div className="">
               <h3 className="text-gray-500 text-md uppercase">Total Posts</h3>
@@ -121,90 +120,112 @@ const DashBoardComp = () => {
         </div>
       </div>
       <div className="flex flex-wrap gap-4 py-3 mx-auto justify-center">
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-black">
+        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md bg-[#E3E4E8] dark:bg-black">
           <div className="flex justify-between p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent users</h1>
-            <Button outline gradientDuoTone="purpleToPink">
+            <button className="rounded-md px-5 py-2 w-auto custom-outline hover:bg-pink-700 hover:text-white">
               <Link to={"/dashboard?tab=users"}>See all</Link>
-            </Button>
+            </button>
           </div>
-          <Table hoverable>
-            <Table.Head>
-              <Table.HeadCell>User image</Table.HeadCell>
-              <Table.HeadCell>Username</Table.HeadCell>
-            </Table.Head>
-            {users &&
-              users.map((user) => (
-                <Table.Body key={user._id} className="divide-y">
-                  <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                    <Table.Cell>
+          <div className="container mx-auto px-6 py-8">
+            <table className="min-w-full dark:bg-zinc-700 bg-zinc-300 rounded-md overflow-hidden ">
+              <thead>
+                <tr>
+                  <th className="py-2 px-4 bg-zinc-600 text-white">
+                    User Image
+                  </th>
+                  <th className="py-2 px-4 bg-zinc-600 text-white">Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr
+                    key={user._id}
+                    className="border-t hover:bg-zinc-400 hover:text-black"
+                  >
+                    <td className="py-2 px-4">
                       <img
                         src={user.profilePicture}
                         alt="user"
-                        className="w-10 h-10 rounded-full bg-gray-500"
+                        className="w-10 h-10 rounded-full"
                       />
-                    </Table.Cell>
-                    <Table.Cell>{user.username}</Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              ))}
-          </Table>
+                    </td>
+                    <td className="py-2 px-4">{user.username}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-black">
+        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md bg-[#E3E4E8] dark:bg-black">
           <div className="flex justify-between p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent comments</h1>
-            <Button outline gradientDuoTone="purpleToPink">
+            <button className="rounded-md px-5 py-2 custom-outline hover:bg-pink-700 hover:text-white">
               <Link to={"/dashboard?tab=comments"}>See all</Link>
-            </Button>
+            </button>
           </div>
-          <Table hoverable>
-            <Table.Head>
-              <Table.HeadCell>Comment content</Table.HeadCell>
-              <Table.HeadCell>Likes</Table.HeadCell>
-            </Table.Head>
-            {comments &&
-              comments.map((comment) => (
-                <Table.Body key={comment._id} className="divide-y">
-                  <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                    <Table.Cell className="w-96">
+          <div className="container mx-auto px-6 py-8">
+            <table className="min-w-full bg-transparent dark:bg-zinc-700 bg-zinc-300 rounded-md overflow-hidden">
+              <thead>
+                <tr>
+                  <th className="py-2 px-5 bg-zinc-600 text-white">
+                    Comment Content
+                  </th>
+                  <th className="py-2 px-5 bg-zinc-600 text-white">Likes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comments.map((comment) => (
+                  <tr
+                    key={comment._id}
+                    className="border-t hover:bg-zinc-400 hover:text-black"
+                  >
+                    <td className="py-4 px-5">
                       <p className="line-clamp-2">{comment.content}</p>
-                    </Table.Cell>
-                    <Table.Cell>{comment.numberOfLikes}</Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              ))}
-          </Table>
+                    </td>
+                    <td className="py-4 px-5">{comment.numberOfLikes}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-black">
+        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md bg-[#E3E4E8] dark:bg-black">
           <div className="flex justify-between p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent posts</h1>
-            <Button outline gradientDuoTone="purpleToPink">
+            <button className="rounded-md px-5 py-2 custom-outline hover:bg-pink-700 hover:text-white">
               <Link to={"/dashboard?tab=users"}>See all</Link>
-            </Button>
+            </button>
           </div>
-          <Table hoverable>
-            <Table.Head>
-              <Table.HeadCell>Post image</Table.HeadCell>
-              <Table.HeadCell>Post Title</Table.HeadCell>
-              <Table.HeadCell>Category</Table.HeadCell>
-            </Table.Head>
-            {posts &&
-              posts.map((post) => (
-                <Table.Body key={post._id} className="divide-y">
-                  <Table.Row className="bg-white dark:border-black dark:bg-gray-800">
-                    <Table.Cell>
+          <div className="container mx-auto px-4 py-8">
+            <table className="min-w-full dark:bg-zinc-700 bg-zinc-300 bg-transparent rounded-md overflow-hidden">
+              <thead className="bg-zinc-600 text-white">
+                <tr>
+                  <th className="py-3 px-5">Post image</th>
+                  <th className="py-3 px-5">Post Title</th>
+                  <th className="py-3 px-5">Category</th>
+                </tr>
+              </thead>
+              <tbody>
+                {posts.map((post) => (
+                  <tr
+                    key={post._id}
+                    className="border-t hover:bg-zinc-400 hover:text-black"
+                  >
+                    <td className="py-4 px-5">
                       <img
                         src={post.image}
-                        alt="user"
+                        alt="post"
                         className="w-14 h-10 rounded-md bg-gray-500"
                       />
-                    </Table.Cell>
-                    <Table.Cell className="w-96">{post.title}</Table.Cell>
-                    <Table.Cell className="w-5">{post.category}</Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              ))}
-          </Table>
+                    </td>
+                    <td className="py-4 px-5 w-96">{post.title}</td>
+                    <td className="py-4 px-5 w-5">{post.category}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

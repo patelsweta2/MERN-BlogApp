@@ -8,6 +8,12 @@ body {
   /* overflow-x: hidden; */
 }
 
+table,
+tr,
+td {
+  border: none;
+}
+
 .ql-editor {
   font-size: 1.05rem;
 }
@@ -118,6 +124,18 @@ body {
   color: rgb(216, 216, 3);
   border: 1px solid rgb(216, 216, 3);
 }
+
+.custom-outline {
+  outline: 3px solid rgb(206, 72, 94);
+}
+
+/* .no-border tr {
+  border-bottom: none !important;
+}
+
+.no-border td {
+  border-bottom: none !important;
+} */
 
 @media screen and (max-width: 768px) {
   .nav-menu {

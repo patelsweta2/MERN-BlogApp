@@ -49,8 +49,8 @@ const DashSideBar = () => {
           <Link to="/dashboard?tab=dash" className="sidebar-item">
             <div
               className={`flex items-center p-2 ${
-                tab === "dash" || !tab ? "bg-slate-400" : ""
-              } hover:bg-slate-400`}
+                tab === "dash" || !tab ? "bg-zinc-400" : ""
+              } hover:bg-zinc-400`}
             >
               <HiChartPie className="mr-3 w-6 h-auto" />
               <span>Dashboard</span>
@@ -60,8 +60,8 @@ const DashSideBar = () => {
         <Link to="/dashboard?tab=profile" className="sidebar-item">
           <div
             className={`flex items-center p-2 ${
-              tab === "profile" ? "bg-slate-400" : ""
-            } hover:bg-slate-400`}
+              tab === "profile" ? "bg-zinc-400" : ""
+            } hover:bg-zinc-400`}
           >
             <HiUser className="mr-3 w-6 h-auto" />
             <span>profile</span>
@@ -72,8 +72,8 @@ const DashSideBar = () => {
             <Link to="/dashboard?tab=posts" className="sidebar-item">
               <div
                 className={`flex items-center p-2 ${
-                  tab === "posts" ? "bg-slate-400" : ""
-                } hover:bg-slate-400`}
+                  tab === "posts" ? "bg-zinc-400" : ""
+                } hover:bg-zinc-400`}
               >
                 <HiDocumentText className="mr-3 w-6 h-auto" />
                 <span>Posts</span>
@@ -82,8 +82,8 @@ const DashSideBar = () => {
             <Link to="/dashboard?tab=users" className="sidebar-item">
               <div
                 className={`flex items-center p-2 ${
-                  tab === "users" ? "bg-slate-400" : ""
-                } hover:bg-slate-400`}
+                  tab === "users" ? "bg-zinc-400" : ""
+                } hover:bg-zinc-400`}
               >
                 <HiOutlineUserGroup className="mr-3 w-6 h-auto" />
                 <span>Users</span>
@@ -92,8 +92,8 @@ const DashSideBar = () => {
             <Link to="/dashboard?tab=comments" className="sidebar-item">
               <div
                 className={`flex items-center p-2 ${
-                  tab === "comments" ? "bg-slate-400" : ""
-                } hover:bg-slate-400`}
+                  tab === "comments" ? "bg-zinc-400" : ""
+                } hover:bg-zinc-400`}
               >
                 <HiAnnotation className="mr-3 w-6 h-auto" />
                 <span>Comments</span>
@@ -102,7 +102,7 @@ const DashSideBar = () => {
           </>
         )}
         <div
-          className="sidebar-item cursor-pointer hover:bg-slate-400"
+          className="sidebar-item cursor-pointer hover:bg-zinc-400"
           onClick={handleSignout}
         >
           <div className="flex items-center p-2">
