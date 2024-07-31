@@ -99,13 +99,13 @@ const CreatePost = () => {
             placeholder="Title"
             required
             id="title"
-            className="flex-1 h-[25px] rounded-md dark:bg-zinc-600 text-white focus:outline-none focus:border-none focus:ring-0 border-teal-500 border-2"
+            className="flex-1 p-2 rounded-md dark:bg-zinc-600 text-white focus:outline-none focus:border-none focus:ring-0 border-teal-500 border-2"
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
           />
           <select
-            className="block appearance-none w-auto dark:bg-zinc-600 dark:text-white focus:border-teal-600 rounded-md border-2 py-2 px-4 pr-8 focus:border-transparent focus:ring-0 custom-select"
+            className="block appearance-none w-auto dark:bg-zinc-600 dark:text-white focus:border-teal-600 rounded-md border-2 py-2 px-4 pr-8  focus:ring-0 custom-select"
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -124,13 +124,12 @@ const CreatePost = () => {
             onChange={(e) => setFile(e.target.files[0])}
           /> */}
           <input
-            className="block h-[25px] w-full text-sm text-gray-500 dark:text-gray-400
-            rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
-            file:mr-4 file:py-2 file:px-4
-            file:bg-violet-50 file:text-violet-700
-            hover:file:bg-violet-100
+            className="block w-full text-sm text-gray-500 dark:text-gray-400
+            rounded-md border bg-white dark:bg-gray-800
+             file:py-2 file:px-4
+            file:bg-zinc-500 file:text-white
             file:font-semibold
-            placeholder-gray-400"
+            file:cursor-pointer"
             type="file"
             accept="image/*"
             onChange={handleChange}

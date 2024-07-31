@@ -152,7 +152,7 @@ const Search = () => {
               Search Term:{" "}
             </label>
             <input
-              className="rounded-md h-[25px] border-red-400 outline-offset-0 focus:outline-none focus:border-none focus:ring-0 text-black"
+              className="rounded-md p-2 border-red-400 outline-offset-0 focus:outline-none focus:border-none focus:ring-0 text-black"
               placeholder="Search..."
               id="searchTerm"
               type="search"

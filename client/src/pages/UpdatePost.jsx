@@ -145,12 +145,11 @@ export default function UpdatePost() {
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
           <input
             className="block w-full text-sm text-gray-500 dark:text-gray-400
-            rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
-            file:mr-4 file:py-2 file:px-4
-            file:bg-violet-50 file:text-violet-700
-            hover:file:bg-violet-100
+            rounded-md border bg-white dark:bg-gray-800
+             file:py-2 file:px-4
+            file:bg-zinc-500 file:text-white
             file:font-semibold
-            placeholder-gray-400"
+            file:cursor-pointer"
             type="file"
             accept="image/*"
             onChange={(e) => setFile(e.target.files[0])}
@@ -158,9 +157,7 @@ export default function UpdatePost() {
           <button
             className="rounded-md w-full outline border-white p-2 bg-amber-500 text-white hover:bg-pink-600 hover:shadow-lg transition duration-300 ease-in-out"
             type="button"
-            gradientDuoTone="purpleToBlue"
             size="sm"
-            outline
             onClick={handleUpdloadImage}
             disabled={imageUploadProgress}
           >
@@ -195,9 +192,8 @@ export default function UpdatePost() {
           }}
         />
         <button
-          className="rounded-md w-full outline border-white p-2 bg-green-500 text-white hover:bg-green-700 hover:shadow-lg transition duration-300 ease-in-out"
+          className="rounded-md w-full outline border-white p-2 bg-green-500 text-white hover:bg-green-700 hover:shadow-lg transition duration-300 ease-in-out m-2"
           type="submit"
-          gradientDuoTone="purpleToPink"
         >
           Update post
         </button>

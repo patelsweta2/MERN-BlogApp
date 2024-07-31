@@ -219,7 +219,7 @@ const DashProfile = () => {
           </span>
         )}
         <input
-          className="w-full h-[26px] rounded-md mt-1 text-black"
+          className="w-full p-2 rounded-md mt-1 text-black"
           type="text"
           id="username"
           placeholder="username"
@@ -227,7 +227,7 @@ const DashProfile = () => {
           onChange={handleChange}
         />
         <input
-          className="w-full h-[26px] rounded-md mt-1 text-black"
+          className="w-full p-2 rounded-md mt-1 text-black"
           type="email"
           id="email"
           placeholder="email"
@@ -235,7 +235,7 @@ const DashProfile = () => {
           onChange={handleChange}
         />
         <input
-          className="w-full h-[26px] rounded-md mt-1 text-black"
+          className="w-full p-2 rounded-md mt-1 text-black"
           type="password"
           id="password"
           placeholder="password"
