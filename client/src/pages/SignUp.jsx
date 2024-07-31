@@ -64,7 +64,7 @@ function SignUp() {
             <div>
               <label className="block">Your username</label>
               <input
-                className="w-full rounded-md mt-1 text-black"
+                className="w-full h-[25px] rounded-md mt-1 text-black"
                 type="text"
                 placeholder="Username"
                 id="username"
@@ -74,7 +74,7 @@ function SignUp() {
             <div>
               <label className="block">Your email</label>
               <input
-                className="w-full rounded-md mt-1 text-black"
+                className="w-full h-[25px] rounded-md mt-1 text-black"
                 type="text"
                 placeholder="name@gmail.com"
                 id="email"
@@ -84,7 +84,7 @@ function SignUp() {
             <div>
               <label className="block">Your password</label>
               <input
-                className="w-full rounded-md mt-1 text-black"
+                className="w-full h-[25px] rounded-md mt-1 text-black"
                 type="password"
                 placeholder="Password"
                 id="password"

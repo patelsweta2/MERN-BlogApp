@@ -68,7 +68,7 @@ function SignIn() {
             <div>
               <label className="block">Your email</label>
               <input
-                className="w-full rounded-md mt-1 text-black"
+                className="w-full h-[25px] rounded-md mt-1 text-black"
                 type="text"
                 placeholder="name@gmail.com"
                 id="email"
@@ -78,7 +78,7 @@ function SignIn() {
             <div>
               <label className="block">Your password</label>
               <input
-                className="w-full rounded-md mt-1 text-black"
+                className="w-full h-[25px] rounded-md mt-1 text-black"
                 type="password"
                 placeholder="*******"
                 id="password"

@@ -99,7 +99,7 @@ const CreatePost = () => {
             placeholder="Title"
             required
             id="title"
-            className="flex-1 rounded-md dark:bg-zinc-600 text-white focus:outline-none focus:border-none focus:ring-0 border-teal-500 border-2"
+            className="flex-1 h-[25px] rounded-md dark:bg-zinc-600 text-white focus:outline-none focus:border-none focus:ring-0 border-teal-500 border-2"
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
@@ -124,7 +124,7 @@ const CreatePost = () => {
             onChange={(e) => setFile(e.target.files[0])}
           /> */}
           <input
-            className="block w-full text-sm text-gray-500 dark:text-gray-400
+            className="block h-[25px] w-full text-sm text-gray-500 dark:text-gray-400
             rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
             file:mr-4 file:py-2 file:px-4
             file:bg-violet-50 file:text-violet-700
