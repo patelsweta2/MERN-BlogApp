@@ -21,5 +21,5 @@ export default {
     //   min375: { max: "375px" },
     // },
   },
-  plugins: [require("flowbite/plugin"), require("tailwind-scrollbar")],
+  plugins: [],
 };
