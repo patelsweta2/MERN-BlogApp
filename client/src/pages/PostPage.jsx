@@ -1,4 +1,3 @@
-import { Spinner, Button } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CallToAction, CommentSection, PostCard } from "../components";
@@ -53,7 +52,7 @@ const PostPage = () => {
   if (loading)
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <Spinner size="xl" />
+        {/* <Spinner size="xl" /> */}
       </div>
     );
 
@@ -67,9 +66,9 @@ const PostPage = () => {
         to={`/search?category=${post && post.category}`}
         className="self-center mt-5"
       >
-        <Button color="gray" pill size="xs">
+        <button className="bg-zinc-300 text-black rounded-2xl px-2 py-1 text-sm">
           {post && post.category}
-        </Button>
+        </button>
       </Link>
       <img
         src={post && post.image}

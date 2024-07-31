@@ -1,4 +1,3 @@
-import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import {
@@ -13,6 +12,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Alert from "../components/Alert";
 
 export default function UpdatePost() {
   const [file, setFile] = useState(null);
@@ -118,18 +118,19 @@ export default function UpdatePost() {
       <h1 className="text-center text-3xl my-7 font-semibold">Update post</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
-          <TextInput
+          <input
             type="text"
             placeholder="Title"
             required
             id="title"
-            className="flex-1"
+            className="flex-1 rounded-md dark:bg-zinc-600 text-white focus:outline-none focus:border-none focus:ring-0 border-teal-500 border-2"
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
             value={formData.title}
           />
-          <Select
+          <select
+            className="block appearance-none w-auto dark:bg-zinc-600 dark:text-white focus:border-teal-600 rounded-md border-2 py-2 px-4 pr-8 focus:border-transparent focus:ring-0 custom-select"
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -139,15 +140,23 @@ export default function UpdatePost() {
             <option value="javascript">JavaScript</option>
             <option value="reactjs">React.js</option>
             <option value="nextjs">Next.js</option>
-          </Select>
+          </select>
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
-          <FileInput
+          <input
+            className="block w-full text-sm text-gray-500 dark:text-gray-400
+            rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
+            file:mr-4 file:py-2 file:px-4
+            file:bg-violet-50 file:text-violet-700
+            hover:file:bg-violet-100
+            file:font-semibold
+            placeholder-gray-400"
             type="file"
             accept="image/*"
             onChange={(e) => setFile(e.target.files[0])}
           />
-          <Button
+          <button
+            className="rounded-md w-full outline border-white p-2 bg-amber-500 text-white hover:bg-pink-600 hover:shadow-lg transition duration-300 ease-in-out"
             type="button"
             gradientDuoTone="purpleToBlue"
             size="sm"
@@ -165,7 +174,7 @@ export default function UpdatePost() {
             ) : (
               "Upload Image"
             )}
-          </Button>
+          </button>
         </div>
         {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
         {formData.image && (
@@ -185,9 +194,13 @@ export default function UpdatePost() {
             setFormData({ ...formData, content: value });
           }}
         />
-        <Button type="submit" gradientDuoTone="purpleToPink">
+        <button
+          className="rounded-md w-full outline border-white p-2 bg-green-500 text-white hover:bg-green-700 hover:shadow-lg transition duration-300 ease-in-out"
+          type="submit"
+          gradientDuoTone="purpleToPink"
+        >
           Update post
-        </Button>
+        </button>
         {publishError && (
           <Alert className="mt-5" color="failure">
             {publishError}
