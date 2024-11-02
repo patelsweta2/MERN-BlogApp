@@ -7,6 +7,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import { Oauth } from "../components";
+import CopyField from "../components/CopyField";
 
 function SignIn() {
   const [formData, setFormData] = useState({});
@@ -64,6 +65,9 @@ function SignIn() {
           </p>
         </div>
         <div className="flex-1">
+          <CopyField label="Email" textToCopy="admin123@gmail.com" />
+          <CopyField label="Password" textToCopy="Admin@123" />
+
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div>
               <label className="block">Your email</label>
