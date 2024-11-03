@@ -188,7 +188,7 @@ const DashBoardComp = () => {
           <div className="flex justify-between p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent posts</h1>
             <button className="rounded-md px-5 py-2 custom-outline hover:bg-pink-700 hover:text-white">
-              <Link to={"/dashboard?tab=users"}>See all</Link>
+              <Link to={"/dashboard?tab=posts"}>See all</Link>
             </button>
           </div>
           <div className="container mx-auto px-4 py-8">

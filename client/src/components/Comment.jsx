@@ -69,8 +69,9 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
         {isEditing ? (
           <>
             <textarea
-              className="mb-2 p-2 border dark:bg-zinc-500 border-none rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="mb-2 p-2 border dark:bg-zinc-500 border-none rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 w-full h-32"
               value={editedContent}
+              maxLength="250"
               onChange={(e) => setEditedContent(e.target.value)}
               placeholder="Enter your text here..."
             />
@@ -103,7 +104,12 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
           </>
         ) : (
           <>
-            <p className="text-gray-500 pb-2">{comment.content}</p>
+            <div className="max-w-md">
+              <p className="text-gray-500 pb-2 break-words whitespace-normal">
+                {comment.content}
+              </p>
+            </div>
+
             <div className="flex items-center pt-2 text-xs border-t dark:border-gray-700 max-w-fit gap-2">
               <button
                 type="button"
